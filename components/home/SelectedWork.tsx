@@ -1,33 +1,13 @@
-import type { ComponentType } from "react";
 import Link from "next/link";
 import Container from "@/components/Container";
 import Reveal from "@/components/Reveal";
 import { projects, type Project } from "@/lib/projects";
+import ConceptBadge from "@/components/site/ConceptBadge";
 import BrowserFrame from "./mockups/BrowserFrame";
-import HearthMockup from "./mockups/HearthMockup";
-import BeaconMockup from "./mockups/BeaconMockup";
-import FernMockup from "./mockups/FernMockup";
-
-const MOCKUPS: Record<
-  string,
-  { domain: string; Body: ComponentType<{ palette: Project["palette"] }> }
-> = {
-  "hearth-and-vine": { domain: "hearthandvine.cafe", Body: HearthMockup },
-  beacon: { domain: "beacon.io", Body: BeaconMockup },
-  "fern-and-frame": { domain: "fernandframe.shop", Body: FernMockup },
-};
-
-function ConceptBadge() {
-  return (
-    <span className="inline-flex items-center gap-1.5 rounded-full border border-line bg-paper/80 px-3 py-1 text-[10px] text-hairline text-ink-muted backdrop-blur-sm">
-      <span className="h-1.5 w-1.5 rounded-full bg-accent" aria-hidden="true" />
-      Concept
-    </span>
-  );
-}
+import { MOCKUP_BODIES } from "./mockups/registry";
 
 function WorkCard({ project, index }: { project: Project; index: number }) {
-  const mock = MOCKUPS[project.slug];
+  const mock = MOCKUP_BODIES[project.slug];
   const flip = index % 2 === 1;
 
   return (
