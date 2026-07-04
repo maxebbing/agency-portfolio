@@ -1,36 +1,47 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Max Ebbing — Web Design Studio
 
-## Getting Started
+A portfolio site for Max Ebbing, a one-person web design studio. The three
+case studies in `/work` are self-initiated concept projects for fictional
+clients — imagined stakes, real design decisions, always labeled as concept
+work rather than real client engagements.
 
-First, run the development server:
+## Tech stack
+
+- [Next.js](https://nextjs.org) App Router, TypeScript
+- [Tailwind CSS v4](https://tailwindcss.com)
+- [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) with Fraunces (display) and Inter (text)
+- Fully static: all pages are prerendered at build time (the three case
+  studies via `generateStaticParams`), no server-side data fetching
+
+## Quick start
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) to view the site.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+npm run build
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+builds the static production output.
 
-## Learn More
+## Deployment
 
-To learn more about Next.js, take a look at the following resources:
+Set the `NEXT_PUBLIC_SITE_URL` environment variable to the site's real
+production URL (e.g. `https://maxebbing.com`) before deploying. It's used to
+resolve `metadataBase` for Open Graph/Twitter metadata and the absolute URLs
+in `app/sitemap.ts` and `app/robots.ts`. Without it, these fall back to
+`http://localhost:3000`.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Structure
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- `app/` — routes: `/` (homepage), `/work` (case study index), `/work/[slug]`
+  (individual case studies), plus `sitemap.ts` and `robots.ts`
+- `components/` — page sections and shared UI, organized by area
+  (`home/`, `work/`, `site/`)
+- `lib/projects.ts` — the single source of content for all case study data
+  (client, palette, copy); the index and case study pages are generated from
+  it

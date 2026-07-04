@@ -27,7 +27,7 @@ export async function generateMetadata({
   }
 
   return {
-    title: `${project.client} — Concept project — Max Ebbing`,
+    title: `${project.client} — Concept project`,
     description: `${project.tagline} ${project.summary}`,
   };
 }

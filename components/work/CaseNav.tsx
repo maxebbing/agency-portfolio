@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Container from "@/components/Container";
+import Reveal from "@/components/Reveal";
 import { projects, type Project } from "@/lib/projects";
 
 /** Prev/next chaining between the three case studies. */
@@ -16,13 +17,21 @@ export default function CaseNav({ current }: { current: Project }) {
   return (
     <nav aria-label="More case studies" className="border-t border-line">
       <Container className="grid sm:grid-cols-2">
-        {items.map(({ label, project, arrow, align }) => (
-          <Link
+        {items.map(({ label, project, arrow, align }, i) => (
+          <Reveal
             key={label}
-            href={`/work/${project.slug}`}
-            className={`group flex flex-col gap-2 py-12 sm:py-16 ${
+            delay={i * 80}
+            className={
               align === "right"
-                ? "border-t border-line sm:items-end sm:border-t-0 sm:border-l sm:pl-10 sm:text-right"
+                ? "border-t border-line sm:border-t-0 sm:border-l"
+                : ""
+            }
+          >
+          <Link
+            href={`/work/${project.slug}`}
+            className={`group flex h-full flex-col gap-2 py-12 sm:py-16 ${
+              align === "right"
+                ? "sm:items-end sm:pl-10 sm:text-right"
                 : "sm:pr-10"
             }`}
           >
@@ -52,6 +61,7 @@ export default function CaseNav({ current }: { current: Project }) {
               {project.tagline}
             </span>
           </Link>
+          </Reveal>
         ))}
       </Container>
     </nav>

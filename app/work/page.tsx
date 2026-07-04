@@ -10,7 +10,7 @@ import { MOCKUP_BODIES } from "@/components/home/mockups/registry";
 import { projects } from "@/lib/projects";
 
 export const metadata: Metadata = {
-  title: "Work — Max Ebbing",
+  title: "Work",
   description:
     "Self-initiated concept projects exploring brand identity and web design for fictional clients.",
 };

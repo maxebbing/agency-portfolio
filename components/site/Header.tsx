@@ -3,7 +3,7 @@ import Container from "@/components/Container";
 
 const NAV_LINKS = [
   { label: "Work", href: "/work" },
-  { label: "Studio", href: "#studio" },
+  { label: "Studio", href: "/#studio" },
   { label: "Contact", href: "#contact" },
 ];
 
